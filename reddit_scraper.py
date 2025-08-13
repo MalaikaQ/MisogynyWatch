@@ -85,8 +85,8 @@ class RedditScraper:
                     if comment.body in ['[deleted]', '[removed]']:
                         continue
                     
-                    # Collect user profile data for age analysis
-                    user_profile = self.get_user_profile_data(comment.author)
+                    # Skip user profile data for now to avoid API issues
+                    user_profile = {}
                         
                     comment_data = {
                         'comment_id': comment.id,

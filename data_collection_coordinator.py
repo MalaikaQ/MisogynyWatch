@@ -162,6 +162,87 @@ class DataCollectionCoordinator:
             logger.warning("No Twitter data collected")
             return pd.DataFrame()
     
+    def collect_targeted_twitter_data(self, 
+                                    collection_type: str = 'mixed',
+                                    max_results: int = 300) -> pd.DataFrame:
+        """
+        Collect targeted Twitter data using enhanced methods.
+        
+        Args:
+            collection_type: 'political', 'celebrity', 'mixed', or 'keyword'
+            max_results: Maximum total results to collect
+            
+        Returns:
+            Combined Twitter dataframe with targeted collection
+        """
+        logger.info("=== ENHANCED TWITTER DATA COLLECTION ===")
+        logger.info(f"Collection type: {collection_type}")
+        
+        all_twitter_data = []
+        
+        if collection_type in ['political', 'mixed']:
+            logger.info("Collecting replies to political figures...")
+            try:
+                political_results = max_results // 2 if collection_type == 'mixed' else max_results
+                political_df = self.twitter_scraper.collect_targeted_political_replies(
+                    max_results=political_results
+                )
+                
+                if not political_df.empty:
+                    political_df['collection_method'] = 'targeted_political'
+                    all_twitter_data.append(political_df)
+                    logger.info(f"Collected {len(political_df)} political replies")
+                
+            except Exception as e:
+                logger.error(f"Error in political collection: {e}")
+        
+        if collection_type in ['celebrity', 'mixed']:
+            logger.info("Collecting replies to celebrities...")
+            try:
+                celebrity_results = max_results // 2 if collection_type == 'mixed' else max_results
+                celebrity_df = self.twitter_scraper.collect_celebrity_interaction_replies(
+                    max_results=celebrity_results
+                )
+                
+                if not celebrity_df.empty:
+                    celebrity_df['collection_method'] = 'targeted_celebrity'
+                    all_twitter_data.append(celebrity_df)
+                    logger.info(f"Collected {len(celebrity_df)} celebrity replies")
+                
+            except Exception as e:
+                logger.error(f"Error in celebrity collection: {e}")
+        
+        if collection_type == 'keyword':
+            logger.info("Collecting keyword-based tweets...")
+            try:
+                keyword_df = self.twitter_scraper.collect_misogyny_related_tweets(
+                    max_results=max_results
+                )
+                
+                if not keyword_df.empty:
+                    keyword_df['collection_method'] = 'keyword_search'
+                    all_twitter_data.append(keyword_df)
+                    logger.info(f"Collected {len(keyword_df)} keyword tweets")
+                
+            except Exception as e:
+                logger.error(f"Error in keyword collection: {e}")
+        
+        if all_twitter_data:
+            combined_df = pd.concat(all_twitter_data, ignore_index=True)
+            # Remove duplicates
+            combined_df = combined_df.drop_duplicates(subset=['tweet_id'])
+            logger.info(f"Total enhanced Twitter data collected: {len(combined_df)} tweets")
+            
+            # Add analysis metadata
+            if 'target_account_category' in combined_df.columns:
+                category_summary = combined_df['target_account_category'].value_counts()
+                logger.info(f"Target categories: {dict(category_summary)}")
+            
+            return combined_df
+        else:
+            logger.warning("No enhanced Twitter data collected")
+            return pd.DataFrame()
+    
     def process_and_analyze_data(self, 
                                reddit_df: pd.DataFrame, 
                                twitter_df: pd.DataFrame) -> tuple:
