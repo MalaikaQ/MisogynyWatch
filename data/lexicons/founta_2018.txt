@@ -1,0 +1,48 @@
+# Founta et al. (2018) Abusive Language Detection Lexicon
+# Based on "Large Scale Crowdsourcing and Characterization of Twitter Abusive Behavior"
+
+# Physical objectification
+property
+owned
+breeding stock
+breeding machine
+baby factory
+incubator
+vessel
+
+# Dehumanizing terms
+appliance
+tool
+object
+thing
+it
+commodity
+
+# Violence-adjacent language
+beat
+slap
+punch
+hit
+force
+dominate
+control
+subdue
+
+# Dismissive intelligence
+stupid
+dumb
+brainless
+empty headed
+airhead
+bimbo
+blonde
+ditzy
+
+# Economic dependency themes
+gold digger
+money hungry
+leech
+parasite
+dependent
+kept woman
+trophy wife

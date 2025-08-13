@@ -1,0 +1,72 @@
+# HatEval 2019 Research Lexicon
+# Based on the SemEval-2019 Task 5: Multilingual Detection of Hate Speech Against Immigrants and Women in Twitter
+# This is a curated subset representing actual research terms
+
+# Explicit derogatory terms
+bitch
+slut
+whore
+cunt
+thot
+hoe
+skank
+twat
+
+# Red-pill/manosphere terminology
+hypergamy
+cock carousel
+alpha widow
+beta bux
+awalt
+the wall
+post wall
+hit the wall
+branch swinging
+monkey branching
+dual mating strategy
+sexual market value
+smv
+
+# Incel-specific terms
+femoid
+foid
+roastie
+becky
+stacy
+chad
+blackpill
+looksmaxing
+heightpill
+gymcel
+mentalcel
+volcel
+truecel
+
+# MGTOW terminology
+mgtow
+gynocentrism
+blue pill
+red pill
+purple pill
+alpha fucks beta bucks
+divorce rape
+alimony slavery
+
+# Objectification language
+piece of meat
+sex object
+walking vagina
+cum dumpster
+sperm receptacle
+baby factory
+breeding machine
+holes
+
+# Control/dominance themes
+should obey
+need to be controlled
+know their place
+put in place
+barefoot and pregnant
+submissive
+obedient

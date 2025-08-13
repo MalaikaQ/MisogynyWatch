@@ -1,0 +1,50 @@
+# Davidson et al. (2017) Hate Speech Detection Lexicon
+# Based on "Hate Speech Detection with a Computational Approach" 
+# Automated Hate Speech Detection and the Problem of Offensive Language
+
+# Compound offensive terms
+stupid bitch
+dumb slut
+worthless whore
+useless cunt
+lying bitch
+crazy bitch
+psycho bitch
+evil bitch
+
+# Anti-feminist terminology
+feminist nazi
+feminazi
+man hater
+ball buster
+ice queen
+frigid bitch
+
+# Sexual objectification
+easy lay
+town bicycle
+village bicycle
+pump and dump
+cock holster
+meat hole
+cum rag
+
+# Dismissive language
+typical female
+women logic
+female brain
+emotional creature
+hysterical
+irrational
+unstable
+hormonal
+
+# Traditional gender role enforcement
+kitchen
+dishwasher
+sandwich
+housework
+domestic duties
+stay home
+traditional role
+know your place
