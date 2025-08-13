@@ -2,14 +2,14 @@
 
 A comprehensive research analysis of misogynistic language patterns on Reddit using lexicon-based detection and contextual analysis. This project provides academic-grade insights into gender-based online harassment, demographic patterns, and event-driven discourse changes.
 
-## ✅ Research Questions Answered
+## Research Questions Answered
 
 1. **Which gender is most misogynistic?** → **Male users are 3x more misogynistic** (0.3% vs 0.1% rate)
 2. **Which subreddit is most affected?** → **r/relationship_advice** has highest rate (2.1%)  
 3. **Which age group is most affected?** → **Young adult males (20-30)** most represented
 4. **Event impact visualization?** → **Andrew Tate detention caused +930% spike**
 
-## 🎯 Key Findings
+## Key Findings
 
 - **Gender Patterns**: Male users 3x more likely to engage in misogynistic discourse
 - **Platform Insights**: Reddit relationship advice contexts especially problematic
@@ -17,18 +17,24 @@ A comprehensive research analysis of misogynistic language patterns on Reddit us
 - **Temporal Trends**: 2017-2018 and 2022 were peak years for misogynistic content
 - **Research Methodology**: Comprehensive lexicon-based analysis with contextual filtering
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 MisogynyWatch/
 ├── README.md
 ├── requirements.txt
 ├── .env.example                           # API configuration template
-├── FINAL_RESEARCH_ANSWERS.md             # Complete research findings
 ├── data/
 │   ├── raw/                              # Raw Reddit data 
 │   ├── processed/                        # Enhanced processed datasets
-│   └── lexicons/                         # Research-based misogyny lexicons
+│   ├── lexicons/                         # Research-based misogyny lexicons
+│   └── analysis/                         # Research outputs and reports
+│       ├── FINAL_RESEARCH_ANSWERS.md     # Complete research findings
+│       ├── research_summary_report.md    # Technical analysis details
+│       └── plots/                        # Generated visualizations
+│           ├── research_summary_visualization.png
+│           ├── event_impact_visualization.png
+│           └── yearly_misogyny_analysis.png
 ├── utils/
 │   ├── config.py                         # Configuration settings
 │   └── __init__.py
@@ -37,16 +43,13 @@ MisogynyWatch/
 ├── event_impact_analysis.py              # Event correlation analysis
 ├── yearly_event_analysis.py              # Longitudinal analysis (2014-2024)
 ├── text_processing.py                    # Lexicon definitions
-├── contextual_misogyny_detector.py       # Enhanced detection logic
+├── contextual_misogyny_detector.py       # Detection logic
 ├── enhanced_demographics.py              # Age/gender extraction
 ├── enhanced_reddit_collector.py          # Data collection system
-└── visualizations/                       # Generated research outputs
-    ├── research_summary_visualization.png
-    ├── event_impact_visualization.png
-    └── yearly_misogyny_analysis.png
+└── venv/                                 # Virtual environment
 ```
 
-## 🚀 Features
+## Features
 
 ### Research-Based Misogyny Detection
 - **Multi-Category Lexicons**: 7 categories of misogynistic language
@@ -78,7 +81,7 @@ MisogynyWatch/
 - **Statistical Validation**: Confidence intervals and significance testing
 - **Academic-Quality Outputs**: Publication-ready visualizations
 
-## 🛠️ Setup Instructions
+## Setup Instructions
 
 ### 1. Environment Setup
 
@@ -113,7 +116,7 @@ REDDIT_PASSWORD=your_reddit_password
 
 *Note: Twitter API configuration removed as analysis focuses on Reddit data only.*
 
-## 🔬 Usage
+## Usage
 
 ### Quick Analysis (Using Existing Data)
 
@@ -161,7 +164,7 @@ gender = analyzer.extract_gender_comprehensive("username", "post text", "subredd
 age = analyzer.extract_age_from_text("I'm 22 years old and...")
 ```
 
-## 📊 Research Data & Methodology
+## Research Data & Methodology
 
 ### Detection Algorithm
 1. **Research Lexicons**: 7 categories of misogynistic language based on academic research
@@ -183,25 +186,25 @@ age = analyzer.extract_age_from_text("I'm 22 years old and...")
 - **2022**: Roe v. Wade overturned, Andrew Tate detained
 - **2024**: Platform crackdowns and demonetization waves
 
-*Complete event list and impact analysis in FINAL_RESEARCH_ANSWERS.md*
+*Complete event list and impact analysis in data/analysis/FINAL_RESEARCH_ANSWERS.md*
 
-## 📈 Research Outputs
+## Research Outputs
 
 ### Generated Visualizations
-- **`research_summary_visualization.png`** - Comprehensive findings overview
-- **`event_impact_visualization.png`** - Timeline of event-driven spikes  
-- **`yearly_misogyny_analysis.png`** - Longitudinal analysis (2014-2024)
+- **`data/analysis/plots/research_summary_visualization.png`** - Comprehensive findings overview
+- **`data/analysis/plots/event_impact_visualization.png`** - Timeline of event-driven spikes  
+- **`data/analysis/plots/yearly_misogyny_analysis.png`** - Longitudinal analysis (2014-2024)
 
 ### Research Documents
-- **`FINAL_RESEARCH_ANSWERS.md`** - Complete research findings and methodology
-- **`research_summary_report.md`** - Technical analysis details
+- **`data/analysis/FINAL_RESEARCH_ANSWERS.md`** - Complete research findings and methodology
+- **`data/analysis/research_summary_report.md`** - Technical analysis details
 
 ### Data Files
 - **`data/processed/enhanced_reddit_analysis.csv`** - Processed dataset with scores
 - **`data/processed/demographic_analysis.json`** - Gender and age statistics
 - **`data/processed/event_impact_results.json`** - Event correlation analysis
 
-## 🎯 Key Research Insights
+## Key Research Insights
 
 ### Gender Analysis  
 - **Male users**: 3x more likely to engage in misogynistic discourse
@@ -223,7 +226,7 @@ age = analyzer.extract_age_from_text("I'm 22 years old and...")
 - **Political events**: Significant spikes (Roe v. Wade, Kavanaugh hearings)
 - **Platform actions**: Effective at reducing rates (bans, demonetization)
 
-## ⚖️ Ethical Considerations & Limitations
+## Ethical Considerations & Limitations
 
 ### Ethics
 - **Academic Research Purpose**: Analysis of harmful online behavior patterns
@@ -244,7 +247,7 @@ age = analyzer.extract_age_from_text("I'm 22 years old and...")
 - **Detection Scope**: Lexicon-based approach captures specific language patterns
 - **Event Attribution**: Multiple confounding factors may influence trends
 
-## 🔮 Future Research Directions
+## Future Research Directions
 
 - **Machine Learning Models**: Advanced NLP for context-aware detection
 - **Real-Time Monitoring**: Live dashboard for ongoing trend analysis  
@@ -253,7 +256,7 @@ age = analyzer.extract_age_from_text("I'm 22 years old and...")
 - **Intervention Studies**: Testing effectiveness of counter-messaging strategies
 - **Longitudinal User Studies**: Tracking individual behavior changes over time
 
-## 📚 Dependencies & Technical Requirements
+## Dependencies & Technical Requirements
 
 ### Core Dependencies
 ```python
@@ -273,7 +276,7 @@ python-dotenv>=0.19.0   # Environment variable management
 - **Storage**: 1GB+ for datasets and visualizations
 - **Network**: Internet connection for data collection (optional)
 
-## 📄 License & Citation
+## License & Citation
 
 ### License
 This project is licensed for academic research purposes. Please ensure compliance with:
@@ -289,7 +292,7 @@ GitHub Repository: https://github.com/MalaikaQ/MisogynyWatch
 Year: 2025
 ```
 
-## 🤝 Contributing & Contact
+## Contributing & Contact
 
 ### Contributing
 - Fork the repository and create feature branches
@@ -305,7 +308,7 @@ Year: 2025
 
 ---
 
-## ⚠️ Important Disclaimers
+## Important Disclaimers
 
 **Content Warning**: This research analyzes disturbing and offensive language patterns. Users should be prepared to encounter misogynistic content during analysis.
 
