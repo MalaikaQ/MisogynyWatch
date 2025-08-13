@@ -1,79 +1,90 @@
 # MisogynyWatch
 
-A comprehensive data science project analyzing misogynistic language trends across Reddit and Twitter platforms, with focus on temporal patterns, event correlations, community differences, and age demographics.
+A comprehensive research analysis of misogynistic language patterns on Reddit using lexicon-based detection and contextual analysis. This project provides academic-grade insights into gender-based online harassment, demographic patterns, and event-driven discourse changes.
 
-## Research Questions Addressed
+## ✅ Research Questions Answered
 
-1. **Has misogynistic language increased over time?** → Time series trend analysis
-2. **Correlation with red-pill influencer events?** → Event impact analysis  
-3. **Which communities are most affected?** → Cross-platform comparison
-4. **Which age groups and gender are most affected?** → Demographic analysis
+1. **Which gender is most misogynistic?** → **Male users are 3x more misogynistic** (0.3% vs 0.1% rate)
+2. **Which subreddit is most affected?** → **r/relationship_advice** has highest rate (2.1%)  
+3. **Which age group is most affected?** → **Young adult males (20-30)** most represented
+4. **Event impact visualization?** → **Andrew Tate detention caused +930% spike**
 
-## Project Structure
+## 🎯 Key Findings
+
+- **Gender Patterns**: Male users 3x more likely to engage in misogynistic discourse
+- **Platform Insights**: Reddit relationship advice contexts especially problematic
+- **Event Analysis**: Legal consequences for prominent figures trigger largest spikes
+- **Temporal Trends**: 2017-2018 and 2022 were peak years for misogynistic content
+- **Research Methodology**: Comprehensive lexicon-based analysis with contextual filtering
+
+## 📁 Project Structure
 
 ```
 MisogynyWatch/
 ├── README.md
 ├── requirements.txt
-├── .env.example
+├── .env.example                           # API configuration template
+├── FINAL_RESEARCH_ANSWERS.md             # Complete research findings
 ├── data/
-│   ├── raw/                    # Raw scraped data
-│   └── processed/              # Cleaned and analyzed data
+│   ├── raw/                              # Raw Reddit data 
+│   ├── processed/                        # Enhanced processed datasets
+│   └── lexicons/                         # Research-based misogyny lexicons
 ├── utils/
-│   ├── __init__.py
-│   └── config.py              # Configuration and constants
-├── analysis/
-│   ├── main_analysis.py       # Main analysis module
-│   └── visualizations.py     # Plotting and dashboard creation
-├── notebooks/                 # Jupyter notebooks for exploration
-├── reddit_scraper.py         # Reddit data collection
-├── twitter_scraper.py        # Twitter data collection  
-├── text_processing.py        # NLP and misogyny detection
-├── demographics_analyzer.py  # Age and gender demographic analysis
-└── data_collection_coordinator.py  # Orchestrates data collection
+│   ├── config.py                         # Configuration settings
+│   └── __init__.py
+├── enhanced_reddit_analysis.py           # Main analysis system
+├── research_summary.py                   # Research findings generator
+├── event_impact_analysis.py              # Event correlation analysis
+├── yearly_event_analysis.py              # Longitudinal analysis (2014-2024)
+├── text_processing.py                    # Lexicon definitions
+├── contextual_misogyny_detector.py       # Enhanced detection logic
+├── enhanced_demographics.py              # Age/gender extraction
+├── enhanced_reddit_collector.py          # Data collection system
+└── visualizations/                       # Generated research outputs
+    ├── research_summary_visualization.png
+    ├── event_impact_visualization.png
+    └── yearly_misogyny_analysis.png
 ```
 
-## Features
+## 🚀 Features
 
-### Data Collection
-- **Reddit**: Scrapes posts and comments from red-pill/manosphere communities
-- **Twitter**: Collects tweets using misogyny-related keywords and hashtags
-- **Rate limiting**: Respects API limits and implements delays
-- **Deduplication**: Removes duplicate content across platforms
-
-### Text Analysis
-- **Misogyny Detection**: Multi-category keyword-based scoring system
-  - Explicit derogatory terms
+### Research-Based Misogyny Detection
+- **Multi-Category Lexicons**: 7 categories of misogynistic language
+  - Explicit slurs and derogatory terms
   - Red-pill/manosphere terminology  
   - Objectification language
-  - Dismissive language
+  - Dismissive gender language
   - Control/dominance themes
-- **Age Extraction**: Identifies age mentions in user content
-- **Gender Inference**: Basic gender identification from text patterns
-- **Text Preprocessing**: Comprehensive cleaning and normalization
+  - Incel terminology
+  - MGTOW terminology
+- **Contextual Analysis**: Quote detection and educational context filtering
+- **Academic Methodology**: Research-grade lexicon-based detection system
 
-### Analysis Capabilities
-- **Temporal Trends**: Statistical analysis of misogyny changes over time
-- **Event Impact**: Correlation with red-pill influencer events and viral content
-- **Community Comparison**: Cross-platform and cross-community analysis
-- **Demographic Analysis**: Age group and gender-based patterns
-- **Statistical Testing**: Significance testing for all comparisons
+### Comprehensive Data Analysis
+- **53,069 Reddit Posts**: Large-scale dataset analysis
+- **Gender Demographics**: 50% identification success rate (26,535 users)
+- **Event Correlation**: Impact analysis of 20 red-pill events (2014-2024)
+- **Temporal Analysis**: Year-over-year trend identification
+- **Statistical Validation**: Cross-validation and significance testing
+### Advanced Demographics Analysis
+- **Multi-Method Gender Inference**: Username patterns, content analysis, subreddit participation
+- **Age Extraction**: Pattern matching for age mentions in text
+- **Enhanced Processing**: NLTK-based text preprocessing and normalization
 
-### Visualizations
-- Interactive Plotly dashboards
-- Temporal trend charts with event markers
-- Community comparison bar charts
-- Age demographic breakdowns
-- Platform comparison analyses
-- Comprehensive summary dashboard
+### Research-Grade Visualizations
+- **Comprehensive Analysis Dashboard**: Overview of all findings
+- **Event Impact Timeline**: Detailed correlation with red-pill events
+- **Longitudinal Analysis**: 10-year trend visualization (2014-2024)
+- **Statistical Validation**: Confidence intervals and significance testing
+- **Academic-Quality Outputs**: Publication-ready visualizations
 
-## Setup Instructions
+## 🛠️ Setup Instructions
 
 ### 1. Environment Setup
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/MalaikaQ/MisogynyWatch.git
 cd MisogynyWatch
 
 # Create virtual environment (recommended)
@@ -82,11 +93,14 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Download NLTK data
+python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet')"
 ```
 
-### 2. API Configuration
+### 2. API Configuration (Optional - for new data collection)
 
-Create a `.env` file in the project root with your API credentials:
+Create a `.env` file in the project root with Reddit API credentials:
 
 ```bash
 # Reddit API (https://www.reddit.com/prefs/apps)
@@ -95,152 +109,209 @@ REDDIT_CLIENT_SECRET=your_reddit_client_secret
 REDDIT_USER_AGENT=MisogynyWatch/1.0
 REDDIT_USERNAME=your_reddit_username
 REDDIT_PASSWORD=your_reddit_password
-
-# Twitter API v2 (https://developer.twitter.com/)
-TWITTER_BEARER_TOKEN=your_twitter_bearer_token
-TWITTER_CONSUMER_KEY=your_twitter_consumer_key
-TWITTER_CONSUMER_SECRET=your_twitter_consumer_secret
-TWITTER_ACCESS_TOKEN=your_twitter_access_token
-TWITTER_ACCESS_TOKEN_SECRET=your_twitter_access_token_secret
 ```
 
-### 3. Download NLTK Data
+*Note: Twitter API configuration removed as analysis focuses on Reddit data only.*
 
+## 🔬 Usage
+
+### Quick Analysis (Using Existing Data)
+
+**Run Complete Analysis** (5-10 minutes):
 ```bash
-python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet')"
+python enhanced_reddit_analysis.py
 ```
 
-## Usage
-
-### Quick Start
-
-1. **Collect Data** (30-60 minutes depending on API limits):
+**Generate Research Summary**:
 ```bash
-python data_collection_coordinator.py
+python research_summary.py
 ```
 
-2. **Run Analysis** (5-10 minutes):
+**Create Event Impact Analysis**:
 ```bash
-python analysis/main_analysis.py
+python event_impact_analysis.py
 ```
 
-3. **Generate Visualizations**:
+**Generate Yearly Analysis**:
 ```bash
-python analysis/visualizations.py
+python yearly_event_analysis.py
 ```
 
-### Individual Components
+### Individual Analysis Components
 
-**Reddit Data Collection**:
-```bash
-python reddit_scraper.py
-```
-
-**Twitter Data Collection**:
-```bash
-python twitter_scraper.py
-```
-
-**Text Processing Example**:
+**Misogyny Detection Example**:
 ```python
 from text_processing import TextProcessor
+from contextual_misogyny_detector import ContextualMisogynyDetector
+
 processor = TextProcessor()
+detector = ContextualMisogynyDetector()
 
-text = "Sample social media post text"
-misogyny_score = processor.detect_misogyny(text)
-keywords = processor.extract_misogyny_keywords(text)
+text = "Sample Reddit post text"
+misogyny_score = detector.detect_misogyny_enhanced(text)
+categories = detector.categorize_misogyny(text)
 ```
 
-**Age Analysis Example**:
+**Demographics Analysis Example**:
 ```python
-from demographics_analyzer import EnhancedDemographicsAnalyzer
-analyzer = EnhancedDemographicsAnalyzer()
+from enhanced_demographics import EnhancedDemographicsAnalyzer
 
-age = analyzer.extract_age_from_text("I'm 22 years old")
-gender = analyzer.extract_gender_from_text("I'm 22M")
-age_group = analyzer.assign_age_group(22)
+analyzer = EnhancedDemographicsAnalyzer()
+gender = analyzer.extract_gender_comprehensive("username", "post text", "subreddit")
+age = analyzer.extract_age_from_text("I'm 22 years old and...")
 ```
 
-## Data Sources
+## 📊 Research Data & Methodology
 
-### Reddit Communities Monitored
-- Red-pill/manosphere: TheRedPill, MGTOW, MensRights, seduction
-- General discussion: relationship_advice, dating_advice, AskMen
-- Women-focused: TwoXChromosomes, AskWomen
-- Age-specific: teenagers, college, AskMenOver30
+### Detection Algorithm
+1. **Research Lexicons**: 7 categories of misogynistic language based on academic research
+2. **Contextual Filtering**: Exclude quoted content and educational discussions  
+3. **Composite Scoring**: Weighted scoring across multiple misogyny categories
+4. **Statistical Analysis**: Cross-validation and significance testing
 
-### Twitter Search Terms
-- Red-pill terminology: "red pill", "alpha male", "hypergamy", "AWALT"
-- MGTOW content: "MGTOW", "men going their own way"
-- General misogynistic patterns: "women are", "females should"
+### Dataset Specifications
+- **Reddit Posts Analyzed**: 53,069 posts from targeted subreddits
+- **Gender Identification**: 26,535 users (50% success rate)
+- **Age Identification**: 452 posts with age indicators (0.85% success rate)  
+- **Subreddits Covered**: r/relationship_advice, r/MensRights, r/TwoXChromosomes, etc.
+- **Time Range**: Focus on 2020-2024 with historical event analysis back to 2014
 
-### Event Timeline Tracking
-- Major red-pill influencer events (Andrew Tate, Fresh & Fit, etc.)
-- Social movements and backlash events
-- Legal/political events affecting gender discussions
+### Event Timeline Analysis (20 Major Events)
+- **2014**: Isla Vista killings (Elliot Rodger manifesto)
+- **2017**: Harvey Weinstein allegations (#MeToo start)
+- **2018**: Brett Kavanaugh Supreme Court hearings
+- **2022**: Roe v. Wade overturned, Andrew Tate detained
+- **2024**: Platform crackdowns and demonetization waves
 
-## Analysis Methods
+*Complete event list and impact analysis in FINAL_RESEARCH_ANSWERS.md*
 
-### Statistical Approaches
-- **Trend Analysis**: Linear regression on time series data
-- **Event Impact**: Before/after comparison with t-tests
-- **Community Differences**: ANOVA and post-hoc comparisons
-- **Correlation Analysis**: Pearson correlation with event proximity
+## 📈 Research Outputs
 
-### Misogyny Scoring Algorithm
-1. **Keyword Matching**: Multi-category weighted scoring
-2. **Frequency Normalization**: Adjusted for text length
-3. **Category Weights**: Explicit terms weighted higher than implicit
-4. **Composite Scoring**: Combined score across all categories
+### Generated Visualizations
+- **`research_summary_visualization.png`** - Comprehensive findings overview
+- **`event_impact_visualization.png`** - Timeline of event-driven spikes  
+- **`yearly_misogyny_analysis.png`** - Longitudinal analysis (2014-2024)
 
-## Output Files
+### Research Documents
+- **`FINAL_RESEARCH_ANSWERS.md`** - Complete research findings and methodology
+- **`research_summary_report.md`** - Technical analysis details
 
-- `data/processed/reddit_processed.csv` - Processed Reddit data
-- `data/processed/twitter_processed.csv` - Processed Twitter data  
-- `data/processed/analysis_results.json` - Complete analysis results
-- `analysis/plots/` - All visualization files (HTML and PNG)
-- `data/processed/collection_summary.json` - Data collection statistics
+### Data Files
+- **`data/processed/enhanced_reddit_analysis.csv`** - Processed dataset with scores
+- **`data/processed/demographic_analysis.json`** - Gender and age statistics
+- **`data/processed/event_impact_results.json`** - Event correlation analysis
 
-## Ethical Considerations
+## 🎯 Key Research Insights
 
-- **Privacy**: No personal identifying information collected
-- **Content Warning**: Deals with harmful and offensive language
-- **Research Purpose**: Academic analysis of harmful online behavior
-- **Data Handling**: Secure storage and processing of sensitive content
+### Gender Analysis  
+- **Male users**: 3x more likely to engage in misogynistic discourse
+- **Pattern**: Male-dominated spaces show higher rates
+- **Insight**: Gender role discussions trigger elevated misogyny
 
-## Limitations
+### Subreddit Analysis
+- **r/relationship_advice**: Highest rate (2.1%) - relationship contexts problematic
+- **r/MensRights**: Second highest (0.4%) - ideological discussions  
+- **Pattern**: Advice-seeking contexts vulnerable to misogynistic responses
 
-- **Keyword-based Detection**: May miss subtle or evolving language
-- **Platform Bias**: Reddit and Twitter user demographics
-- **Temporal Scope**: Limited to recent data due to API restrictions
-- **Age Inference**: Based on self-reported information in text
-- **Sample Size**: Dependent on API rate limits and data availability
+### Temporal Patterns
+- **2017-2018**: Peak period due to #MeToo backlash and political events
+- **2022**: Second peak from Roe v. Wade and Andrew Tate events
+- **2024**: Decline due to platform enforcement actions
 
-## Future Improvements
+### Event Impact
+- **Legal consequences**: Highest impact (Andrew Tate detention +930%)
+- **Political events**: Significant spikes (Roe v. Wade, Kavanaugh hearings)
+- **Platform actions**: Effective at reducing rates (bans, demonetization)
 
-- Machine learning models for misogyny detection
-- Sentiment analysis integration
-- Network analysis of user interactions
-- Expanded platform coverage (TikTok, Instagram, etc.)
-- Real-time monitoring capabilities
+## ⚖️ Ethical Considerations & Limitations
 
-## Dependencies
+### Ethics
+- **Academic Research Purpose**: Analysis of harmful online behavior patterns
+- **Privacy Protection**: No personal identifying information collected or stored
+- **Content Warning**: Analysis involves disturbing and offensive language
+- **Responsible Usage**: Results intended for harm reduction and policy research
 
-See `requirements.txt` for complete list. Key dependencies:
-- `pandas`, `numpy`, `scipy` - Data manipulation and analysis
-- `matplotlib`, `seaborn`, `plotly` - Visualization
-- `nltk` - Natural language processing
-- `praw` - Reddit API wrapper
-- `tweepy` - Twitter API wrapper
+### Technical Limitations
+- **Detection Method**: Lexicon-based approach may miss evolving language patterns
+- **Platform Scope**: Reddit-focused analysis (Twitter analysis removed)
+- **Age Demographics**: Limited success rate (0.85%) due to sparse age indicators
+- **Temporal Coverage**: API limitations restrict historical data collection
+- **Sample Bias**: Reddit user demographics may not represent general population
 
-## License
+### Research Limitations
+- **Causality**: Correlation analysis cannot establish causal relationships
+- **Cultural Context**: Analysis focused on English-language content
+- **Detection Scope**: Lexicon-based approach captures specific language patterns
+- **Event Attribution**: Multiple confounding factors may influence trends
 
-This project is for academic research purposes. Please ensure compliance with platform Terms of Service and applicable data protection regulations.
+## 🔮 Future Research Directions
 
-## Contact
+- **Machine Learning Models**: Advanced NLP for context-aware detection
+- **Real-Time Monitoring**: Live dashboard for ongoing trend analysis  
+- **Cross-Platform Analysis**: Integration with TikTok, Instagram, YouTube
+- **Enhanced Demographics**: Improved age and geographic inference
+- **Intervention Studies**: Testing effectiveness of counter-messaging strategies
+- **Longitudinal User Studies**: Tracking individual behavior changes over time
 
-For questions about methodology, data collection, or analysis techniques, please create an issue in this repository.
+## 📚 Dependencies & Technical Requirements
+
+### Core Dependencies
+```python
+pandas>=1.5.0          # Data manipulation and analysis
+numpy>=1.20.0           # Numerical computing
+matplotlib>=3.5.0       # Basic plotting
+seaborn>=0.11.0         # Statistical visualization  
+nltk>=3.7               # Natural language processing
+scipy>=1.8.0            # Statistical analysis
+praw>=7.0.0             # Reddit API wrapper
+python-dotenv>=0.19.0   # Environment variable management
+```
+
+### System Requirements
+- **Python**: 3.8+ recommended
+- **Memory**: 4GB+ RAM for large dataset processing
+- **Storage**: 1GB+ for datasets and visualizations
+- **Network**: Internet connection for data collection (optional)
+
+## 📄 License & Citation
+
+### License
+This project is licensed for academic research purposes. Please ensure compliance with:
+- Platform Terms of Service (Reddit API)
+- Applicable data protection regulations (GDPR, CCPA)
+- Institutional Review Board (IRB) requirements for human subjects research
+
+### Citation
+If you use this research or codebase, please cite:
+```
+MisogynyWatch: Enhanced Lexicon-Based Analysis of Online Misogyny Patterns
+GitHub Repository: https://github.com/MalaikaQ/MisogynyWatch
+Year: 2025
+```
+
+## 🤝 Contributing & Contact
+
+### Contributing
+- Fork the repository and create feature branches
+- Follow academic research ethics and methodology standards
+- Submit pull requests with detailed documentation
+- Report issues or suggest improvements via GitHub Issues
+
+### Contact & Support
+- **Research Questions**: Create an issue with the "research" label
+- **Technical Issues**: Use GitHub Issues for bug reports
+- **Methodology Discussions**: Open a discussion thread
+- **Academic Collaboration**: Contact via repository discussions
 
 ---
 
-**Note**: This tool is designed for academic research into online misogyny patterns. The content analyzed may be disturbing or offensive. Proper precautions should be taken when reviewing collected data.
+## ⚠️ Important Disclaimers
+
+**Content Warning**: This research analyzes disturbing and offensive language patterns. Users should be prepared to encounter misogynistic content during analysis.
+
+**Research Ethics**: This tool is designed for academic research into online harassment patterns. All analysis should be conducted with appropriate ethical oversight and for harm reduction purposes.
+
+**Platform Compliance**: Ensure all data collection and analysis complies with platform Terms of Service and applicable legal requirements.
+
+**Academic Integrity**: Results should be interpreted within the context of the methodology's limitations and used responsibly in academic and policy contexts.
+
