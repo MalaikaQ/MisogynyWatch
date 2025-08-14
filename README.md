@@ -21,32 +21,37 @@ A comprehensive research analysis of misogynistic language patterns on Reddit us
 
 ```
 MisogynyWatch/
-├── README.md
-├── requirements.txt
-├── .env.example                           # API configuration template
+├── README.md                             # Project documentation
+├── requirements.txt                      # Python dependencies
+├── .env.example                          # API configuration template
 ├── data/
-│   ├── raw/                              # Raw Reddit data 
-│   ├── processed/                        # Enhanced processed datasets
-│   ├── lexicons/                         # Research-based misogyny lexicons
-│   └── analysis/                         # Research outputs and reports
-│       ├── FINAL_RESEARCH_ANSWERS.md     # Complete research findings
-│       ├── research_summary_report.md    # Technical analysis details
-│       └── plots/                        # Generated visualizations
-│           ├── research_summary_visualization.png
-│           ├── event_impact_visualization.png
-│           └── yearly_misogyny_analysis.png
+│   ├── raw/                             # Raw collected data (CSV files)
+│   │   ├── reddit_processed.csv         # Sample Reddit dataset
+│   │   ├── reddit_MensRights_*.csv      # Subreddit-specific data
+│   │   ├── reddit_relationship_advice_*.csv
+│   │   └── twitter_keywords_*.csv       # Twitter data samples
+│   ├── processed/                       # Analysis-ready datasets
+│   │   ├── reddit_processed.csv         # Enhanced Reddit analysis data
+│   │   └── twitter_processed.csv        # Twitter analysis data
+│   ├── lexicons/                        # Research-based misogyny lexicons
+│   └── analysis/                        # Research outputs and reports
+│       ├── FINAL_RESEARCH_ANSWERS.md    # Complete research findings
+│       ├── research_summary_report.md   # Technical analysis details
+│       └── plots/                       # Generated visualizations
 ├── utils/
-│   ├── config.py                         # Configuration settings
+│   ├── config.py                        # Configuration settings & event data
 │   └── __init__.py
-├── enhanced_reddit_analysis.py           # Main analysis system
-├── research_summary.py                   # Research findings generator
-├── event_impact_analysis.py              # Event correlation analysis
-├── yearly_event_analysis.py              # Longitudinal analysis (2014-2024)
-├── text_processing.py                    # Lexicon definitions
-├── contextual_misogyny_detector.py       # Detection logic
-├── enhanced_demographics.py              # Age/gender extraction
-├── enhanced_reddit_collector.py          # Data collection system
-└── venv/                                 # Virtual environment
+├── enhanced_reddit_analysis.py          # Main analysis system
+├── research_summary.py                  # Research findings generator
+├── event_impact_analysis.py             # Event correlation analysis
+├── yearly_event_analysis.py             # Longitudinal analysis (2014-2024)
+├── text_processing.py                   # Lexicon definitions & text preprocessing
+├── contextual_misogyny_detector.py      # Detection logic & algorithms
+├── enhanced_demographics.py             # Age/gender extraction methods
+├── enhanced_reddit_collector.py         # Data collection system
+├── reddit_scraper.py                    # Reddit API data collection
+├── twitter_scraper.py                   # Twitter API data collection
+└── venv/                                # Virtual environment (created during setup)
 ```
 
 ## Features
@@ -116,6 +121,39 @@ REDDIT_PASSWORD=your_reddit_password
 
 *Note: Twitter API configuration removed as analysis focuses on Reddit data only.*
 
+## Data Files & Input Format
+
+This repository includes sample input data files to demonstrate the expected data format:
+
+### Sample Data Files Included
+- **`data/raw/reddit_processed.csv`** - Sample Reddit dataset (53,069 posts)
+- **`data/raw/reddit_MensRights_*.csv`** - Subreddit-specific sample data
+- **`data/raw/reddit_relationship_advice_*.csv`** - Relationship advice subreddit data
+- **`data/processed/reddit_processed.csv`** - Analysis-ready processed dataset
+
+### Expected Input Data Format
+Reddit CSV files should contain these columns:
+```
+id, title, selftext, author, subreddit, created_utc, score, num_comments, url
+```
+
+Sample row:
+```csv
+"abc123","Help with relationship","My girlfriend and I are having issues...","user123","relationship_advice","2024-01-15 10:30:00",45,23,"https://reddit.com/r/..."
+```
+
+### Data Collection Commands
+**Collect new Reddit data:**
+```bash
+python reddit_scraper.py --subreddit relationship_advice --limit 1000
+python enhanced_reddit_collector.py --keywords "dating advice" --days 30
+```
+
+**Process collected data:**
+```bash
+python text_processing.py --input data/raw/ --output data/processed/
+```
+
 ## Usage
 
 ### Quick Analysis (Using Existing Data)
@@ -123,22 +161,60 @@ REDDIT_PASSWORD=your_reddit_password
 **Run Complete Analysis** (5-10 minutes):
 ```bash
 python enhanced_reddit_analysis.py
+# Analyzes data/processed/reddit_processed.csv
+# Outputs: enhanced_misogyny_analysis.png, console results
 ```
 
 **Generate Research Summary**:
 ```bash
 python research_summary.py
+# Creates: data/analysis/research_summary_report.md
+# Creates: research_summary_visualization.png
 ```
 
 **Create Event Impact Analysis**:
 ```bash
 python event_impact_analysis.py
+# Analyzes 20 red-pill events (2014-2024)
+# Creates: event_impact_visualization.png
 ```
 
 **Generate Yearly Analysis**:
 ```bash
 python yearly_event_analysis.py
+# Creates: yearly_misogyny_analysis.png
+# Shows longitudinal trends with event correlation
 ```
+
+### Command-Line Options
+
+**Enhanced Reddit Analysis:**
+```bash
+python enhanced_reddit_analysis.py [--data_path PATH] [--output_dir PATH]
+# --data_path: Path to input CSV file (default: data/processed/reddit_processed.csv)
+# --output_dir: Output directory for results (default: current directory)
+```
+
+**Data Collection:**
+```bash
+python reddit_scraper.py --subreddit SUBREDDIT [--limit NUM] [--timeframe DAYS]
+# --subreddit: Target subreddit name (required)
+# --limit: Number of posts to collect (default: 1000)
+# --timeframe: Days back to collect (default: 30)
+```
+
+### Expected Output Files
+
+**Analysis Results:**
+- `enhanced_misogyny_analysis.png` - Main research dashboard
+- `research_summary_visualization.png` - Key findings overview  
+- `event_impact_visualization.png` - Event correlation timeline
+- `yearly_misogyny_analysis.png` - 10-year longitudinal analysis
+
+**Data Outputs:**
+- `data/analysis/research_summary_report.md` - Technical report
+- `data/analysis/FINAL_RESEARCH_ANSWERS.md` - Complete findings
+- Console output with statistical summaries and key metrics
 
 ### Individual Analysis Components
 
@@ -259,14 +335,18 @@ age = analyzer.extract_age_from_text("I'm 22 years old and...")
 ## Dependencies & Technical Requirements
 
 ### Core Dependencies
-```python
+```
 pandas>=1.5.0          # Data manipulation and analysis
-numpy>=1.20.0           # Numerical computing
+numpy>=1.21.0           # Numerical computing
+scipy>=1.9.0            # Statistical analysis
 matplotlib>=3.5.0       # Basic plotting
 seaborn>=0.11.0         # Statistical visualization  
+plotly>=5.10.0          # Interactive visualizations
 nltk>=3.7               # Natural language processing
-scipy>=1.8.0            # Statistical analysis
-praw>=7.0.0             # Reddit API wrapper
+textblob>=0.17.1        # Sentiment analysis and NLP
+praw>=7.6.0             # Reddit API wrapper
+tweepy>=4.12.0          # Twitter API wrapper
+requests>=2.28.0        # HTTP requests (web scraping backup)
 python-dotenv>=0.19.0   # Environment variable management
 ```
 
@@ -276,31 +356,4 @@ python-dotenv>=0.19.0   # Environment variable management
 - **Storage**: 1GB+ for datasets and visualizations
 - **Network**: Internet connection for data collection (optional)
 
-## License & Citation
-
-### License
-This project is licensed for academic research purposes. Please ensure compliance with:
-- Platform Terms of Service (Reddit API)
-- Applicable data protection regulations (GDPR, CCPA)
-- Institutional Review Board (IRB) requirements for human subjects research
-
-### Citation
-If you use this research or codebase, please cite:
-```
-MisogynyWatch: Enhanced Lexicon-Based Analysis of Online Misogyny Patterns
-GitHub Repository: https://github.com/MalaikaQ/MisogynyWatch
-Year: 2025
-```
-
----
-
-## Important Disclaimers
-
-**Content Warning**: This research analyzes disturbing and offensive language patterns. Users should be prepared to encounter misogynistic content during analysis.
-
-**Research Ethics**: This tool is designed for academic research into online harassment patterns. All analysis should be conducted with appropriate ethical oversight and for harm reduction purposes.
-
-**Platform Compliance**: Ensure all data collection and analysis complies with platform Terms of Service and applicable legal requirements.
-
-**Academic Integrity**: Results should be interpreted within the context of the methodology's limitations and used responsibly in academic and policy contexts.
 
