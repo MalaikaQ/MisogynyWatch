@@ -4,9 +4,9 @@ A comprehensive research analysis of misogynistic language patterns on Reddit us
 
 ## Research Questions Answered
 
-1. **Which gender is most misogynistic?** → **Male users are 3x more misogynistic** (0.3% vs 0.1% rate)
+1. **Which gender is most misogynistic? Male vs Female** → **Male users are 3x more misogynistic** (0.3% vs 0.1% rate)
 2. **Which subreddit is most affected?** → **r/relationship_advice** has highest rate (2.1%)  
-3. **Which age group is most affected?** → **Young adult males (20-30)** most represented
+3. **Which age group is most affected?** → not enough significant data
 4. **Event impact visualization?** → **Andrew Tate detention caused +930% spike**
 
 ## Key Findings
@@ -291,20 +291,6 @@ MisogynyWatch: Enhanced Lexicon-Based Analysis of Online Misogyny Patterns
 GitHub Repository: https://github.com/MalaikaQ/MisogynyWatch
 Year: 2025
 ```
-
-## Contributing & Contact
-
-### Contributing
-- Fork the repository and create feature branches
-- Follow academic research ethics and methodology standards
-- Submit pull requests with detailed documentation
-- Report issues or suggest improvements via GitHub Issues
-
-### Contact & Support
-- **Research Questions**: Create an issue with the "research" label
-- **Technical Issues**: Use GitHub Issues for bug reports
-- **Methodology Discussions**: Open a discussion thread
-- **Academic Collaboration**: Contact via repository discussions
 
 ---
 
